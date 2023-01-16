@@ -1,0 +1,32 @@
+# Blender 3.4.1 MTL File: 'None'
+# www.blender.org
+
+newmtl Material.005
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/shari/Documents/School Stuff/Models/GDW Final Game Project Models/Good Copy Builds/Revised Tree Models/Palm Tree/Palm Tree Objects/Normal Palm Tree/palm01.png
+map_d C:/Users/shari/Documents/School Stuff/Models/GDW Final Game Project Models/Good Copy Builds/Revised Tree Models/Palm Tree/Palm Tree Objects/Normal Palm Tree/palm01.png
+
+newmtl date_palm_leaf.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd date palm leaf.png
+map_d date palm leaf.png
+
+newmtl palm01.006
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd palm01.png
+map_d palm01.png

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4674d7b2600ca48b222d4fee4d558d, type: 3}
+  m_Name: Club
+  m_EditorClassIdentifier: 
+  EquipmentSlotType: {fileID: 11400000, guid: f6ba2a265580a7a489c18f6dbaa25aaa, type: 2}
+  Icon: {fileID: 21300000, guid: 7fe4bd2739d0a5c4c803b3a5d404527d, type: 3}
+  ModelName: bat
+  Description: A club to fight enemies! To equip drag onto the right arm slot!
+  MaxStackSize: 0
+  PlaceablePrefab: {fileID: 0}

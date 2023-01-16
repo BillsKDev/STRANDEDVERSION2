@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4674d7b2600ca48b222d4fee4d558d, type: 3}
+  m_Name: Trap
+  m_EditorClassIdentifier: 
+  EquipmentSlotType: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 497c875f4faef67498d0e061b566aab5, type: 3}
+  ModelName: 
+  Description: A placeable trap that freezes enemies in it's places.
+  MaxStackSize: 0
+  PlaceablePrefab: {fileID: 7246349032680188455, guid: e41b69d78dd013349add14101a88cb5d, type: 3}

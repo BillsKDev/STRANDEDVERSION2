@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     float GetCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
     CharacterController characterController;
+    public GameObject flashLight;
+    bool flashlightOn;
 
     private Vector3 moveDir;
     private Vector2 currInput;
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         defaultYpos = virtualCamera.transform.localPosition.y;
+        flashLight.SetActive(false);
     }
 
     void Update()
@@ -91,6 +94,20 @@ public class PlayerMovement : MonoBehaviour
         {
             ShowPanel.Invoke();
             _clickCount++;
+        }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if (flashlightOn == false)
+            {
+                flashLight.SetActive(true);
+                flashlightOn = true;
+            }
+            else if (flashlightOn == true)
+            {
+                flashLight.SetActive(false);
+                flashlightOn = false;
+            }
         }
 
     }

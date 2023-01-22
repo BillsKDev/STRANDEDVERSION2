@@ -8,11 +8,12 @@ public class TimeProgressor : MonoBehaviour
 
     public float axisOffset;
     public Light sun;
+    public Light sun2;
     public Light moon;
     public Gradient nightLight;
 
 
-    public int hour;
+    public static int hour;
     public int minute;
     public int hourPM;
 

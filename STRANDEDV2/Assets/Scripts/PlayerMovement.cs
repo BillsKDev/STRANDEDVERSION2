@@ -176,4 +176,3 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(moveDir * Time.deltaTime);
     }
 }
-    

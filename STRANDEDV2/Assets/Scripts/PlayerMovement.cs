@@ -45,7 +45,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float baseStepSpeed = 0.5f;
     [SerializeField] float sprintStepMultiplier = 0.6f;
     [SerializeField] AudioSource stepSource = default;
-    [SerializeField] AudioClip steps = default;
+    [SerializeField] AudioClip[] steps = default;
+    [SerializeField] AudioClip jump = default;
     float footstepTimer = 0;
     float GetCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
@@ -102,11 +103,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 flashLight.SetActive(true);
                 flashlightOn = true;
+                FindObjectOfType<AudioManager>().Play("FlashlightOn");
             }
             else if (flashlightOn == true)
             {
                 flashLight.SetActive(false);
                 flashlightOn = false;
+                FindObjectOfType<AudioManager>().Play("FlashlightOff");
             }
         }
 
@@ -131,7 +134,11 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         if (isJumping)
+        {
             moveDir.y = jumpForce;
+            //stepSource.PlayOneShot(jump);
+
+        }
     }
     private void HeadBob()
     {
@@ -155,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(virtualCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
                 switch (hit.collider.tag) {
                     case "Grass":
-                    stepSource.PlayOneShot(steps);
+                        stepSource.PlayOneShot(steps[Random.Range(0, steps.Length - 1)]);
                     break;
                 }
             footstepTimer = GetCurrentOffset;        

@@ -26,6 +26,11 @@ public class EquipmentVisuals : MonoBehaviour
                 {
                     var model = visual.VisualModelRoot.GetChild(i);
                     model.gameObject.SetActive(model.name == slot.Item?.ModelName);
+
+                    if (model.name == "Beretta")
+                    {
+                        FindObjectOfType<AudioManager>().Play("GunDraw");
+                    }
                 }
             }
         }

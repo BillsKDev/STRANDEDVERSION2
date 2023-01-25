@@ -15,6 +15,7 @@ MonoBehaviour:
   EquipmentSlotType: {fileID: 11400000, guid: f6ba2a265580a7a489c18f6dbaa25aaa, type: 2}
   Icon: {fileID: 21300000, guid: 7fe4bd2739d0a5c4c803b3a5d404527d, type: 3}
   ModelName: bat
-  Description: A club to fight enemies! To equip drag onto the right arm slot!
+  Description: These are the specific instructions to build a club! Follow the specific
+    order!
   MaxStackSize: 0
   PlaceablePrefab: {fileID: 0}

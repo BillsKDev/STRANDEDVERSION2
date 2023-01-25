@@ -15,6 +15,6 @@ MonoBehaviour:
   Ingrediants:
   - {fileID: 11400000, guid: 717b785173323d64886671dee6928192, type: 2}
   - {fileID: 11400000, guid: 717b785173323d64886671dee6928192, type: 2}
-  - {fileID: 11400000, guid: 75badee2feb5b074a934f7b0cb2188c8, type: 2}
+  - {fileID: 11400000, guid: 717b785173323d64886671dee6928192, type: 2}
   Rewards:
-  - {fileID: 11400000, guid: a69313785f6cc1c4184fa8bfab4c460e, type: 2}
+  - {fileID: 11400000, guid: ca47de5d9f578fa4ca829be3b66d96e5, type: 2}

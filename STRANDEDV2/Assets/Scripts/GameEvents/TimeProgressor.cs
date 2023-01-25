@@ -8,7 +8,6 @@ public class TimeProgressor : MonoBehaviour
 
     public float axisOffset;
     public Light sun;
-    public Light sun2;
     public Light moon;
     public Gradient nightLight;
 
@@ -34,7 +33,7 @@ public class TimeProgressor : MonoBehaviour
 
     private void Start()
     {
-
+        timeOfDay = 7.5f;
 
     }
     void Update()

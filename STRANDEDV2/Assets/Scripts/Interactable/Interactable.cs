@@ -54,8 +54,12 @@ public class Interactable : MonoBehaviour
             return;
 
         _data.TimeInteracted += Time.deltaTime;
-        if (WasFullyInteracted) 
+        if (WasFullyInteracted)
+        {
+            FindObjectOfType<AudioManager>().Play("Interacted");
             CompleteInteracton();
+
+        }
     }
 
     void CompleteInteracton()

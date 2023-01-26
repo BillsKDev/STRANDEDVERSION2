@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GamePersistance : MonoBehaviour
 {
+
     public GameData _gameData;
 
     void Start() => LoadGame();
@@ -16,13 +17,16 @@ public class GamePersistance : MonoBehaviour
 
     void LoadGame()
     {
+        PlayerPrefs.DeleteAll();
+
         var data = PlayerPrefs.GetString("GameData");
         _gameData = JsonUtility.FromJson<GameData>(data);
         if (_gameData == null)
             _gameData = new GameData();
-
+        
         Inventory.Instance.Bind(_gameData.SlotDatas);
         PlacementManager.Instance.Bind(_gameData.PlaceableDatas);
         InteractionManager.Bind(_gameData.InteractableDatas);
+
     }
 }

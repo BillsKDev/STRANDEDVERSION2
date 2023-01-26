@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     int _clickCount = 0;
     public UnityEvent ShowPanel;
+    public UnityEvent EndGame;
     public Transform position;
 
     [Header("Movement Settings")]
@@ -111,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
                 flashlightOn = false;
                 FindObjectOfType<AudioManager>().Play("FlashlightOff");
             }
+        }
+
+        if (ZombieAnimator.killCounter == 20)
+        {
+            EndGame.Invoke();
         }
 
     }

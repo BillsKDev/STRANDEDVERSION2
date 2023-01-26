@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   EquipmentSlotType: {fileID: 11400000, guid: f6ba2a265580a7a489c18f6dbaa25aaa, type: 2}
-  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: 80be00e5fb88ab2468f3402eb72cfaa5, type: 3}
   ModelName: Beretta
   Description: A gun to hold off enemies!
   MaxStackSize: 0

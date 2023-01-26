@@ -1,41 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HealthUI : MonoBehaviour
 {
+    private Health playerHealth;
+    [SerializeField] UnityEvent Dead;
 
-	[SerializeField] private GameObject healthBar;
-	[SerializeField] private float healthBarWidth;
-	private float healthBarWidthSmooth;
-	[SerializeField] private float healthBarWidthEase;
-	public Animator animator;
-	public int health;
-	public int maxHealth;
+    [SerializeField]
+    private Image healthFillBar;
+    [SerializeField]
+    private TextMeshProUGUI healthText;
 
-	private static HealthUI instance;
-	public static HealthUI Instance
-	{
-		get
-		{
-			if (instance == null) instance = GameObject.FindObjectOfType<HealthUI>();
-			return instance;
-		}
-	}
+    private void Start()
+    {
+        playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Health>();
+        playerHealth.OnHealthChanged += HandleTookHit;
+    }
+    
+    private void HandleTookHit(int currentHealth, int maxHealth)
+    {
+        healthText.text = string.Format("{0}/{1}", currentHealth, maxHealth);
+        healthFillBar.fillAmount = (float)currentHealth / (float)maxHealth;
+        FindObjectOfType<AudioManager>().Play("PlayerHit"); 
 
-	void Start()
-	{
-		healthBarWidth = 1;
-		healthBarWidthSmooth = healthBarWidth;
-	}
+        if (currentHealth == 0)
+        {
+            Dead.Invoke();
+        }
+    }
 
-	void Update()
-	{
-		healthBarWidth = (float)HealthUI.Instance.health / (float)HealthUI.Instance.maxHealth;
-		healthBarWidthSmooth += (healthBarWidth - healthBarWidthSmooth) * Time.deltaTime * healthBarWidthEase;
-		healthBar.transform.localScale = new Vector2(healthBarWidthSmooth, transform.localScale.y);
-	}
+    public void StartDying() => StartCoroutine(Die());
 
-    public void HealthBarHurt() => animator.SetTrigger("hurt");
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("IslandScene");
+    }
 }
-

@@ -55,6 +55,7 @@ public class WeaponAmmo : WeaponComponent
         int ammoMissingFromClip = maxAmmoPerClip - ammoInClip;
 
         int ammoToMove = Mathf.Min(ammoMissingFromClip, ammoRemainingNotInClip);
+        FindObjectOfType<AudioManager>().Play("GunReload");
         if (infiniteAmmo)
         {
             ammoToMove = ammoMissingFromClip;

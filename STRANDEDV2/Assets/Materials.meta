@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:STRANDEDV2/Assets/Materials.meta
 guid: a0581dbcf0cca984c8191d7dcfced9fd
 folderAsset: yes
+========
+guid: af417471e7b983f41a6dd4c7712af100
+>>>>>>>> main:STRANDEDV2/Assets/Scenes/Model Tests.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

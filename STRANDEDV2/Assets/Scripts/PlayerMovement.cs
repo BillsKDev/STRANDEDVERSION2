@@ -3,6 +3,7 @@ using UnityEngine;
 using Cinemachine;
 using JetBrains.Annotations;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -60,11 +61,34 @@ public class PlayerMovement : MonoBehaviour
 
     float _mouseMovementX = 0;
 
+    [Header("Gun Stuff")]
+    public static PlayerMovement instance;
+    public CharacterController charCon;
+    public Transform firePoint, adsPoint, gunHolder, camTrans, camTarget;
+    public Gun activeGun;
+    public List<Gun> allGuns = new List<Gun>();
+    public List<Gun> unlockableGuns = new List<Gun>();
+    public int currentGun;
+    Vector3 gunStartPos;
+    public float adsSpeed = 2f;
+    public GameObject muzzleFlash;
+    float startFOV, targetFOV;
+    public float zoomSpeed = 1f;
+    Animator anim;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
         defaultYpos = virtualCamera.transform.localPosition.y;
         flashLight.SetActive(false);
+        instance = this;
+    }
+
+    private void Start()
+    {
+        startFOV = virtualCamera.m_Lens.FieldOfView;
+        targetFOV = startFOV;
+        anim = FindObjectOfType<Bat>().GetComponent<Animator>();
     }
 
     void Update()
@@ -92,13 +116,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.C) && _clickCount == 0)
-        {
-            ShowPanel.Invoke();
-            _clickCount++;
-        }
-
-        if(Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (flashlightOn == false)
             {
@@ -114,11 +132,56 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (ZombieAnimator.killCounter == 20)
+        if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
         {
-            EndGame.Invoke();
+            RaycastHit hit;
+            if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f))
+            {
+                if (Vector3.Distance(camTrans.position, hit.point) > 2f)
+                {
+                    firePoint.LookAt(hit.point);
+                }
+            }
+            else
+            {
+                firePoint.LookAt(camTrans.position + (camTrans.forward * 30f));
+            }
+
+            FireShot();
         }
 
+        //repeating shots
+        if (Input.GetMouseButton(0) && activeGun.canAutoFire)
+        {
+            if (activeGun.fireCounter <= 0)
+            {
+                FireShot();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SwitchGun();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            PlayerMovement.instance.ZoomIn(activeGun.zoomAmount);
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            gunHolder.position = Vector3.MoveTowards(gunHolder.position, adsPoint.position, adsSpeed * Time.deltaTime);
+        }
+        else
+        {
+            gunHolder.localPosition = Vector3.MoveTowards(gunHolder.localPosition, gunStartPos, adsSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            PlayerMovement.instance.ZoomOut();
+        }
     }
 
     void FixedUpdate()
@@ -129,6 +192,84 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
         }
     }
+
+    private void LateUpdate()
+    {
+        transform.position = camTarget.position;
+        virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, targetFOV, zoomSpeed * Time.deltaTime);
+    }
+
+    public void ZoomIn(float newZoom) => targetFOV = newZoom;
+
+    public void ZoomOut() => targetFOV = startFOV;
+
+    public void FireShot()
+    {
+        if (activeGun.currentAmmo > 0)
+        {
+
+            activeGun.currentAmmo--;
+
+            Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
+
+            activeGun.fireCounter = activeGun.fireRate;
+
+            UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+
+            muzzleFlash.SetActive(true);
+            anim.Play("Attack");
+            FindObjectOfType<AudioManager>().Play("GunShot");
+        }
+    }
+
+    public void SwitchGun()
+    {
+        activeGun.gameObject.SetActive(false);
+
+        currentGun++;
+
+        if (currentGun >= allGuns.Count)
+        {
+            currentGun = 0;
+        }
+
+        activeGun = allGuns[currentGun];
+        activeGun.gameObject.SetActive(true);
+
+        UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+
+        firePoint.position = activeGun.firepoint.position;
+    }
+
+    public void AddGun(string gunToAdd)
+    {
+        bool gunUnlocked = false;
+
+        if (unlockableGuns.Count > 0)
+        {
+            for (int i = 0; i < unlockableGuns.Count; i++)
+            {
+                if (unlockableGuns[i].gunName == gunToAdd)
+                {
+                    gunUnlocked = true;
+
+                    allGuns.Add(unlockableGuns[i]);
+
+                    unlockableGuns.RemoveAt(i);
+
+                    i = unlockableGuns.Count;
+                }
+            }
+
+        }
+
+        if (gunUnlocked)
+        {
+            currentGun = allGuns.Count - 2;
+            SwitchGun();
+        }
+    }
+
     private void MouseLook()
     {
         _mouseMovementX -= Input.GetAxis("Mouse Y") * lookSpeedY;

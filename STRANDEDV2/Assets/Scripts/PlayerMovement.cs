@@ -172,10 +172,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             gunHolder.position = Vector3.MoveTowards(gunHolder.position, adsPoint.position, adsSpeed * Time.deltaTime);
+            anim.SetBool("Aiming", true);
         }
         else
         {
             gunHolder.localPosition = Vector3.MoveTowards(gunHolder.localPosition, gunStartPos, adsSpeed * Time.deltaTime);
+            anim.SetBool("Aiming", false);
         }
 
         if (Input.GetMouseButtonUp(1))

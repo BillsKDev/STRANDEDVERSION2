@@ -8,11 +8,15 @@ public class EnemyHealthController : MonoBehaviour
     public void DamageEnemy(int damageAmount)
     {
         currentHealth -= damageAmount;
+        
 
         if(Enemy != null)
             Enemy.GetShot();
 
         if(currentHealth <= 0)
+        {
+            FindObjectOfType<AudioManager>().Play("ZombieDeath");
             Destroy(gameObject);
+        }
     }
 }

@@ -88,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
     {
         startFOV = virtualCamera.m_Lens.FieldOfView;
         targetFOV = startFOV;
-        anim = FindObjectOfType<Bat>().GetComponent<Animator>();
     }
 
     void Update()
@@ -132,26 +131,34 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f))
-            {
-                if (Vector3.Distance(camTrans.position, hit.point) > 2f)
-                {
-                    firePoint.LookAt(hit.point);
-                }
-            }
-            else
-            {
-                firePoint.LookAt(camTrans.position + (camTrans.forward * 30f));
-            }
+            anim = FindObjectOfType<Bat>().GetComponent<Animator>();
+        }
 
-            FireShot();
+        if (activeGun != null)
+        {
+            if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f))
+                {
+                    if (Vector3.Distance(camTrans.position, hit.point) > 2f)
+                    {
+                        firePoint.LookAt(hit.point);
+                    }
+                }
+                else
+                {
+                    firePoint.LookAt(camTrans.position + (camTrans.forward * 30f));
+                }
+
+                FireShot();
+            }
         }
 
         //repeating shots
-        if (Input.GetMouseButton(0) && activeGun.canAutoFire)
+        if (activeGun != null && Input.GetMouseButton(0) && activeGun.canAutoFire)
         {
             if (activeGun.fireCounter <= 0)
             {
@@ -177,12 +184,12 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             gunHolder.localPosition = Vector3.MoveTowards(gunHolder.localPosition, gunStartPos, adsSpeed * Time.deltaTime);
-            anim.SetBool("Aiming", false);
         }
 
         if (Input.GetMouseButtonUp(1))
         {
             PlayerMovement.instance.ZoomOut();
+            anim.SetBool("Aiming", false);
         }
     }
 

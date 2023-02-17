@@ -4,6 +4,7 @@ public class EnemyHealthController : MonoBehaviour
 {
     public int currentHealth = 5;
     public EnemyController Enemy;
+    AudioClip[] deathSounds;
 
     public void DamageEnemy(int damageAmount)
     {

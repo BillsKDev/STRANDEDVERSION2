@@ -35,6 +35,7 @@ public class PlayerHealthController : MonoBehaviour
             //AudioManager.instance.PlaySFX(7);
 
             currentHealth -= damageAmount;
+            FindObjectOfType<AudioManager>().Play("PlayerHurt");
 
             UIController.instance.ShowDamage();
 

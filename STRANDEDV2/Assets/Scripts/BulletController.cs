@@ -21,10 +21,16 @@ public class BulletController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" && damageEnemy)
+        {
             other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage);
 
+        }
+
+
         if (other.gameObject.tag == "Headshot" && damageEnemy)
+        {
             other.transform.parent.GetComponent<EnemyHealthController>().DamageEnemy(damage * 2);
+        }
 
         if (other.gameObject.tag == "Player" && damagePlayer)
             PlayerHealthController.instance.DamagePlayer(damage);

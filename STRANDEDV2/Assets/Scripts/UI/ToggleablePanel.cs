@@ -39,6 +39,7 @@ public class ToggleablePanel : MonoBehaviour
         _canvasGroup.alpha = 0.9f;
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.interactable = true;
+        PlayerMovement._canShoot = false;
     }
 
     public void Hide()
@@ -47,5 +48,6 @@ public class ToggleablePanel : MonoBehaviour
         _canvasGroup.alpha = 0f;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
+        PlayerMovement._canShoot = true;
     }
 }

@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     float startFOV, targetFOV;
     public float zoomSpeed = 1f;
     Animator anim;
+    public static bool _canShoot = true;
 
     void Awake()
     {
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         startFOV = virtualCamera.m_Lens.FieldOfView;
         targetFOV = startFOV;
+        anim = FindObjectOfType<Gun>().GetComponent<Animator>();
     }
 
     void Update()
@@ -131,12 +133,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            anim = FindObjectOfType<Bat>().GetComponent<Animator>();
-        }
-
-        if (activeGun != null)
+        if (activeGun != null && _canShoot == true)
         {
             if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
             {

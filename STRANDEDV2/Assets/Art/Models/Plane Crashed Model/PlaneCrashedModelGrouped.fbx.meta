@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41aec53f8228eca4fb8c596c54185570
+guid: 34bdb53ff3e1d624f82447fac8702280
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,32 +8,32 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: 675bd1bcee82752469247da00e5f94e3, type: 2}
+    second: {fileID: 2100000, guid: 9715438edd26bc1448d26a247fd14990, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.003
-    second: {fileID: 2100000, guid: 1f2a11fe5586c2a45969336d11b0c063, type: 2}
+    second: {fileID: 2100000, guid: b74df2c3caf5f504e94cf72d9b752faa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.004
-    second: {fileID: 2100000, guid: 7f982b98aa7ca39478b21e5aa90b309c, type: 2}
+    second: {fileID: 2100000, guid: cf5943c33e8d62847a31b1e965078433, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.005
-    second: {fileID: 2100000, guid: c984443098d2b0a428ab42f9b048d0f9, type: 2}
+    second: {fileID: 2100000, guid: 8a1039f9c007f97429aa48f0e4f9594e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.006
-    second: {fileID: 2100000, guid: 70080d675da71894099442aede32fc73, type: 2}
+    second: {fileID: 2100000, guid: 3e6a7852f4f152f48847eb175f18b2cc, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: CrashedPlaneUVColours
-    second: {fileID: 2800000, guid: dc4fef1cfd2d37a48adea0d7d269618b, type: 3}
+    second: {fileID: 2800000, guid: fc5f791bfac7bd046bc6a8ba473f0a45, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

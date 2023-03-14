@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,6 +332,13 @@ MonoBehaviour:
   upperlookLimit: 80
   lowerlookLimit: 80
   virtualCamera: {fileID: 5979598887147875274}
+  ShowPanel:
+    m_PersistentCalls:
+      m_Calls: []
+  EndGame:
+    m_PersistentCalls:
+      m_Calls: []
+  position: {fileID: 0}
   moveSpeed: 5
   sprintSpeed: 6
   gravity: 9.8
@@ -339,12 +346,32 @@ MonoBehaviour:
   Sprinting: 1
   Jumping: 1
   canUseHeadbob: 1
+  canUseFootsteps: 1
   sprintKey: 304
   jumpKey: 32
   walkBobSpeed: 14
   walkBobValue: 0.05
   sprintBobSpeed: 18
   sprintBobValue: 0.05
+  baseStepSpeed: 0.5
+  sprintStepMultiplier: 0.6
+  stepSource: {fileID: 0}
+  steps: []
+  jump: {fileID: 0}
+  flashLight: {fileID: 0}
+  charCon: {fileID: 0}
+  firePoint: {fileID: 0}
+  adsPoint: {fileID: 0}
+  gunHolder: {fileID: 0}
+  camTrans: {fileID: 0}
+  camTarget: {fileID: 0}
+  activeGun: {fileID: 0}
+  allGuns: []
+  unlockableGuns: []
+  currentGun: 0
+  adsSpeed: 2
+  muzzleFlash: {fileID: 0}
+  zoomSpeed: 1
 --- !u!143 &5979598886911978728
 CharacterController:
   m_ObjectHideFlags: 0
@@ -540,7 +567,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

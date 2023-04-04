@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
 
         shootTimeCounter = timeToShoot;
         shotWaitCounter = waitBetweenShots;
+        FindObjectOfType<AudioManager>().Play("ZombieSpawn");
     }
 
     void Update()

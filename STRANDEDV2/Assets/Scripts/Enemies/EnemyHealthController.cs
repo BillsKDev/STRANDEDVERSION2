@@ -1,15 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
     public int currentHealth = 5;
     public EnemyController Enemy;
-    AudioClip[] deathSounds;
+    [SerializeField] Animator animator;
 
     public void DamageEnemy(int damageAmount)
     {
         currentHealth -= damageAmount;
-        
 
         if(Enemy != null)
             Enemy.GetShot();
@@ -17,7 +17,14 @@ public class EnemyHealthController : MonoBehaviour
         if(currentHealth <= 0)
         {
             FindObjectOfType<AudioManager>().Play("ZombieDeath");
-            Destroy(gameObject);
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        animator.SetTrigger("Death");
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

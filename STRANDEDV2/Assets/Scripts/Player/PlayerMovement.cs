@@ -4,6 +4,7 @@ using Cinemachine;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     float footstepTimer = 0;
     float GetCurrentOffset => isSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
+
     CharacterController characterController;
     public GameObject flashLight;
     bool flashlightOn;
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     float _mouseMovementX = 0;
 
     [Header("Gun Stuff")]
+    public ParticleSystem muzzleFlash;
     public static PlayerMovement instance;
     public CharacterController charCon;
     public Transform firePoint, adsPoint, gunHolder, camTrans, camTarget;
@@ -71,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
     public int currentGun;
     Vector3 gunStartPos;
     public float adsSpeed = 2f;
-    public GameObject muzzleFlash;
     float startFOV, targetFOV;
     public float zoomSpeed = 1f;
     Animator anim;
     public static bool _canShoot = true;
+    public static bool _playFire = false;
 
     void Awake()
     {
@@ -112,9 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 HeadBob();
 
             if (canUseFootsteps)
-            {
                 Footsteps();
-            }
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -160,6 +161,11 @@ public class PlayerMovement : MonoBehaviour
             if (activeGun.fireCounter <= 0)
             {
                 FireShot();
+                _playFire = true;
+            }
+            else
+            {
+                _playFire = false;
             }
         }
 
@@ -176,7 +182,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             gunHolder.position = Vector3.MoveTowards(gunHolder.position, adsPoint.position, adsSpeed * Time.deltaTime);
-            anim.SetBool("Aiming", true);
         }
         else
         {
@@ -186,7 +191,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             PlayerMovement.instance.ZoomOut();
-            anim.SetBool("Aiming", false);
         }
     }
 
@@ -222,8 +226,7 @@ public class PlayerMovement : MonoBehaviour
 
             UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
-            muzzleFlash.SetActive(true);
-            anim.Play("Attack");
+            muzzleFlash.Play();
             FindObjectOfType<AudioManager>().Play("GunShot");
         }
     }
@@ -311,14 +314,16 @@ public class PlayerMovement : MonoBehaviour
         if (currInput == Vector2.zero) return;
         footstepTimer -= Time.deltaTime;
 
-        if (footstepTimer <= 0) {
+        if (footstepTimer <= 0)
+        {
             if (Physics.Raycast(virtualCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
-                switch (hit.collider.tag) {
+                switch (hit.collider.tag)
+                {
                     case "Grass":
                         stepSource.PlayOneShot(steps[Random.Range(0, steps.Length - 1)]);
-                    break;
+                        break;
                 }
-            footstepTimer = GetCurrentOffset;        
+            footstepTimer = GetCurrentOffset;
         }
     }
     private void Move()
@@ -336,3 +341,5 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(moveDir * Time.deltaTime);
     }
 }
+
+

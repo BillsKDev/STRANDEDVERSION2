@@ -17,6 +17,9 @@ public class Gun : MonoBehaviour
     public float zoomAmount;
 
     public string gunName;
+    Animator anim;
+
+    private void Awake() => anim = GetComponent<Animator>();    
 
     void Update()
     {

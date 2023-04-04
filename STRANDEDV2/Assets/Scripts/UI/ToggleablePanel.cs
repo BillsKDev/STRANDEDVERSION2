@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ToggleablePanel : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class ToggleablePanel : MonoBehaviour
     static HashSet<ToggleablePanel> _visiblePanels = new HashSet<ToggleablePanel>();
     public static bool AnyVisible => _visiblePanels.Count > 0;
     public bool IsVisible => _canvasGroup.alpha > 0;
-
     [SerializeField] private KeyCode _hotKey;
 
     void Awake()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   Hotkey: 101
-  BeforeInteraction: Collect
+  BeforeInteraction: Collect Wood
   DuringInteraction: Collecting
   CompletedInteraction: You got wood!
   IsDefault: 0

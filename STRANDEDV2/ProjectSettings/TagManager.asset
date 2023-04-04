@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Ground
   - Grass
+  - Headshot
+  - Save
   layers:
   - Default
   - TransparentFX

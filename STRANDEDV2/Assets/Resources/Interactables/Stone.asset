@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   Hotkey: 101
-  BeforeInteraction: Collect
+  BeforeInteraction: Collect Stone
   DuringInteraction: Collecting
   CompletedInteraction: You got stone!
   IsDefault: 0

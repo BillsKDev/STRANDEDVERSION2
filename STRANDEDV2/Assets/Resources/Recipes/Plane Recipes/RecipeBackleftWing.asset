@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9552313390d97314391d4013546b01ea, type: 3}
   m_Name: RecipeBackleftWing
   m_EditorClassIdentifier: 
-  Ingrediants: []
-  Rewards: []
+  Ingrediants:
+  - {fileID: 11400000, guid: 0abf15bbe5e94654c8883d71c17ad0ac, type: 2}
+  - {fileID: 11400000, guid: 0abf15bbe5e94654c8883d71c17ad0ac, type: 2}
+  - {fileID: 11400000, guid: 0abf15bbe5e94654c8883d71c17ad0ac, type: 2}
+  Rewards:
+  - {fileID: 11400000, guid: 215068d8c96d2dc4ab993008df24476f, type: 2}

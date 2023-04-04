@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     CharacterController characterController;
+    PauseMenu Pausemenu;
     public GameObject flashLight;
     bool flashlightOn;
 
@@ -201,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
             isMove = false;
             Cursor.lockState = CursorLockMode.Confined;
         }
+       
     }
 
     private void LateUpdate()
@@ -281,11 +283,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void MouseLook()
     {
-        _mouseMovementX -= Input.GetAxis("Mouse Y") * lookSpeedY;
-        _mouseMovementX = Mathf.Clamp(_mouseMovementX, -upperlookLimit, lowerlookLimit);
-        virtualCamera.transform.localRotation = Quaternion.Euler(_mouseMovementX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeedX, 0);
-
+        if (!PauseMenu.isPaused)
+        { 
+          _mouseMovementX -= Input.GetAxis("Mouse Y") * lookSpeedY;
+          _mouseMovementX = Mathf.Clamp(_mouseMovementX, -upperlookLimit, lowerlookLimit);
+          virtualCamera.transform.localRotation = Quaternion.Euler(_mouseMovementX, 0, 0);
+          transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeedX, 0);
+        }
     }
     private void Jump()
     {

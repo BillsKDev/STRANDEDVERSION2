@@ -15084,7 +15084,7 @@ MonoBehaviour:
     fastMode: 0
     keepAlpha: 0
   fog:
-    enabled: 0
+    enabled: 1
     excludeSkybox: 0
   debugLayer:
     lightMeter:
@@ -34224,8 +34224,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351441269012945793}
-  m_LocalRotation: {x: -0.119326755, y: -0.8772409, z: -0.29178762, w: 0.3620353}
-  m_LocalPosition: {x: 127.08683, y: -59.99374, z: 111.616196}
+  m_LocalRotation: {x: 0.03869832, y: 0.0113867, z: 0.00044400114, w: -0.999186}
+  m_LocalPosition: {x: 97.75907, y: -30.395905, z: 109.66315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -134,6 +134,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            FindObjectOfType<AudioManager>().Play("JournalOpen");
+        }
+
         if (activeGun != null && _canShoot == true)
         {
             if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
